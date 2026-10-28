@@ -82,25 +82,6 @@
   .hero .lead { margin: 22px auto 0; max-width: 34em; color: var(--text); font-size: clamp(15px, 1.25vw, 17px); }
   .hero .wl { margin: 34px auto 0; }
   .hero .note { margin: 14px auto 0; max-width: 560px; text-align: left; }
-  /* clone intro card */
-  .intro { position: relative; margin: 30px auto 0; width: 100%; max-width: 340px; aspect-ratio: 4 / 5; border-radius: 16px; overflow: hidden; background: var(--panel); border: 1px solid var(--line-2); box-shadow: 0 30px 80px rgba(0,0,0,.5); }
-  .intro video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
-  .hero .scroll-cue { display: none; }
-  .intro .snd { all: unset; position: absolute; inset: 0; cursor: pointer; }
-  .intro .chip { position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px; font: 500 10.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; background: rgba(22,17,14,.82); color: var(--cream); padding: 9px 11px; border-radius: 8px; pointer-events: none; }
-  .intro .chip svg { width: 14px; height: 14px; flex: none; }
-  .intro .who { position: absolute; left: 12px; top: 12px; font: 500 10.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--cream); background: var(--red); padding: 7px 9px; border-radius: 6px; pointer-events: none; }
-  .intro.on .chip .off, .intro:not(.on) .chip .on { display: none; }
-  @media (min-width: 1000px) {
-    .hero { text-align: left; }
-    .hero-inner { display: grid; grid-template-columns: 1fr 340px; gap: 64px; align-items: center; }
-    .hero h1 { font-size: clamp(72px, 8.4vw, 132px); }
-    .hero .sub, .hero .lead { margin-left: 0; }
-    .hero .wl { margin: 34px 0 0; }
-    .hero .note { margin: 14px 0 0; }
-    .intro { margin: 0; aspect-ratio: 9 / 16; max-height: calc(100svh - 170px); justify-self: end; }
-    .scroll-cue { display: none; }
-  }
   .scroll-cue { position: absolute; left: 50%; bottom: 26px; z-index: 2; transform: translateX(-50%); font: 500 10.5px/1 var(--mono); letter-spacing: .18em; color: var(--muted); text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none; }
   .scroll-cue::after { content: ""; width: 1px; height: 34px; background: linear-gradient(var(--muted), transparent); }
 
@@ -285,24 +266,12 @@
       <video id="heroVideo" muted loop playsinline autoplay preload="auto" poster="media/v2/hero.jpg"></video>
     </div>
     <div class="hero-inner container">
-      <div>
-        <p class="kicker">AI Story Reels · Waitlist open</p>
-        <h1>AI Story Reels</h1>
-        <p class="sub">Any character. Any world. Reels people watch to the end.</p>
-        <p class="lead">The course behind our AI story reels: the idea, the characters, the shots, the sound and the edit. With the exact prompts and the real cost of every shot.</p>
-        <div class="wl" data-step="1"></div>
-        <p class="note">Free to join. The waitlist gets early access at <b>$49</b>. Price after launch: $97.</p>
-      </div>
-      <div class="intro" id="intro">
-        <video id="introVideo" src="media/v2/clone-intro.mp4" poster="media/v2/clone-intro.jpg" muted loop playsinline autoplay preload="metadata" aria-label="My AI clone introduces the course"></video>
-        <span class="who">My AI clone</span>
-        <button class="snd" type="button" id="introSnd" aria-label="Play with sound"></button>
-        <span class="chip">
-          <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="m23 9-6 6M17 9l6 6"/></svg>
-          <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>
-          <span class="off">Tap for sound</span><span class="on">Sound on</span>
-        </span>
-      </div>
+      <p class="kicker">AI Story Reels · Waitlist open</p>
+      <h1>AI Story Reels</h1>
+      <p class="sub">Any character. Any world. Reels people watch to the end.</p>
+      <p class="lead">The course behind our AI story reels: the idea, the characters, the shots, the sound and the edit. With the exact prompts and the real cost of every shot.</p>
+      <div class="wl" data-step="1"></div>
+      <p class="note">Free to join. The waitlist gets early access at <b>$49</b>. Price after launch: $97.</p>
     </div>
     <a class="scroll-cue" href="#course">Scroll</a>
   </section>
@@ -610,14 +579,6 @@
     hv.src = innerWidth < 768 ? "media/v2/hero-m.mp4" : "media/v2/hero.mp4";
     hv.play().catch(() => {});
   }
-
-  // clone intro: muted autoplay with captions; tap = restart with sound, tap again = mute
-  const intro = document.getElementById("intro"), iv = document.getElementById("introVideo");
-  if (reduceMotion) iv.removeAttribute("autoplay");
-  document.getElementById("introSnd").addEventListener("click", () => {
-    if (iv.muted) { iv.muted = false; iv.currentTime = 0; iv.play().catch(() => {}); intro.classList.add("on"); }
-    else { iv.muted = true; intro.classList.remove("on"); }
-  });
 
   // lazy videos: load near the screen, play only while visible
   const vids = document.querySelectorAll("video[data-src]");
