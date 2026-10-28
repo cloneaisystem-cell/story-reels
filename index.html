@@ -2,401 +2,623 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AI Story Reels · Waitlist</title>
-<meta name="description" content="Learn to make cinematic AI story reels with any character: idea, characters, shots, sound and edit. Join the waitlist for early access.">
+<meta name="description" content="The course behind our AI story reels: idea, characters, shots, sound and edit, with the exact prompts and the real cost of every shot. Join the waitlist.">
 <meta property="og:title" content="AI Story Reels · Waitlist">
-<meta property="og:description" content="Cinematic AI story reels, step by step. Join the waitlist for early access.">
-<meta property="og:image" content="media/hero-poster.jpg">
+<meta property="og:description" content="Any character. Any world. Reels people watch to the end. Join the waitlist for early access.">
+<meta property="og:image" content="https://cloneaisystem-cell.github.io/story-reels/media/v2/hero.jpg">
 <meta name="theme-color" content="#16110E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="media/v2/hero.jpg">
 <style>
   :root {
     --bg: #16110E;
+    --bg-2: #1C1613;
     --panel: #2B2420;
-    --line: #3A302A;
+    --line: rgba(250, 238, 196, .12);
+    --line-2: rgba(250, 238, 196, .2);
     --cream: #FAEEC4;
-    --red: #A3231A;
+    --text: rgba(250, 238, 196, .82);
     --muted: #B8A58A;
-    --title: "DM Serif Display", Georgia, serif;
-    --accent: "Instrument Serif", Georgia, serif;
-    --ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --red: #A3231A;
+    --red-hi: #B92A1F;
+    --display: "DM Serif Display", Georgia, serif;
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+    --pad: 20px;
+    --max: 1280px;
   }
+  @media (min-width: 900px) { :root { --pad: 56px; } }
+  @media (min-width: 1280px) { :root { --pad: 80px; } }
+
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--cream);
-    font-family: var(--ui);
-    font-size: 17px;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--cream); }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--cream); font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  img, video { display: block; max-width: 100%; }
+  a { color: inherit; }
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+  em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: 0; }
 
-  /* top bar */
-  .top { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
-  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; font-size: 15px; }
-  .brand img { width: 34px; height: 34px; border-radius: 50%; display: block; }
-  .top .link { font-size: 14px; color: var(--muted); text-decoration: none; }
-  .top .link:hover { color: var(--cream); }
+  .kicker { display: inline-flex; align-items: center; gap: 10px; font: 500 11.5px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--text); margin: 0 0 18px; }
+  .kicker::before { content: ""; width: 7px; height: 7px; background: var(--red); flex: none; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; color: var(--cream); text-wrap: balance; }
+  .sub, blockquote, .lead { text-wrap: balance; }
+  .head-row > div:first-child { flex: 1 1 auto; min-width: 0; }
+  .head-row p.side { flex: 0 1 26em; }
+  h2 { font-size: clamp(38px, 5.4vw, 72px); line-height: 1.02; letter-spacing: -.015em; }
+  h2 em { font-size: 1.04em; }
 
-  /* hero */
-  .hero { padding: 28px 0 56px; display: grid; gap: 32px; align-items: center; }
-  .pill {
-    display: inline-block; background: var(--red); color: var(--cream);
-    font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
-    padding: 7px 12px; border-radius: 999px;
-  }
-  h1 {
-    font-family: var(--title); font-weight: 400;
-    font-size: clamp(52px, 11vw, 92px); line-height: .98; letter-spacing: -.01em;
-    margin: 18px 0 10px;
-  }
-  .sub {
-    font-family: var(--accent); font-style: italic;
-    font-size: clamp(26px, 5.4vw, 36px); line-height: 1.15; margin: 0 0 18px;
-  }
-  .lead { color: var(--muted); max-width: 34em; margin: 0 0 26px; }
-  .lead strong { color: var(--cream); font-weight: 600; }
-  .cta {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    background: var(--red); color: var(--cream); text-decoration: none; border: 0;
-    font: 600 17px/1 var(--ui); padding: 18px 26px; border-radius: 12px; cursor: pointer;
-    min-height: 56px;
-  }
-  .cta:hover { filter: brightness(1.12); }
-  .price-note { font-size: 14px; color: var(--muted); margin-top: 12px; }
-  .price-note s { opacity: .8; }
-  .reel {
-    position: relative; border-radius: 16px; overflow: hidden; background: var(--panel);
-    aspect-ratio: 4 / 3; box-shadow: 0 30px 80px rgba(0,0,0,.45);
-  }
-  .reel video { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .reel .tag {
-    position: absolute; left: 14px; bottom: 14px; background: rgba(22,17,14,.78);
-    font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
-    padding: 6px 10px; border-radius: 8px; color: var(--cream);
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; text-decoration: none; font: 500 12.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; background: var(--red); color: var(--cream); padding: 0 22px; min-height: 48px; border-radius: 10px; transition: background .2s, transform .2s; white-space: nowrap; }
+  .btn:hover { background: var(--red-hi); }
+  .btn:active { transform: translateY(1px); }
+  .btn.cream { background: var(--cream); color: #16110E; }
+  .btn.cream:hover { background: #fff6d8; }
+  :focus-visible { outline: 2px solid var(--cream); outline-offset: 3px; }
+
+  /* ---------- header ---------- */
+  .top { position: absolute; inset: 0 0 auto 0; z-index: 10; border-bottom: 1px solid var(--line); }
+  .top .container { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .logo img { width: 34px; height: 34px; border-radius: 50%; }
+  .logo span { font: 400 23px/1 var(--display); letter-spacing: -.01em; }
+  .top .btn { min-height: 40px; padding: 0 16px; font-size: 11.5px; }
+
+  /* ---------- hero ---------- */
+  .shot .hero { min-height: 900px; }
+  .hero { position: relative; min-height: min(100svh, 1000px); display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; padding: 120px 0 80px; }
+  .hero-media { position: absolute; inset: 0; }
+  .hero-media video, .hero-media img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-media::after { content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(22,17,14,.72) 0%, rgba(22,17,14,.35) 30%, rgba(22,17,14,.5) 62%, var(--bg) 100%),
+      radial-gradient(ellipse at 50% 48%, rgba(22,17,14,.35), rgba(22,17,14,0) 70%); }
+  .hero-inner { position: relative; z-index: 2; width: 100%; }
+  .hero h1 { font-size: clamp(60px, 11.5vw, 150px); line-height: .92; letter-spacing: -.025em; text-shadow: 0 2px 40px rgba(0,0,0,.35); }
+  .hero .sub { font: italic 400 clamp(26px, 3.3vw, 44px)/1.12 var(--serif); margin: 18px auto 0; max-width: 18em; color: var(--cream); }
+  .hero .lead { margin: 22px auto 0; max-width: 34em; color: var(--text); font-size: clamp(15px, 1.25vw, 17px); }
+  .hero .wl { margin: 34px auto 0; }
+  .hero .note { margin: 14px auto 0; max-width: 560px; text-align: left; }
+  .scroll-cue { position: absolute; left: 50%; bottom: 26px; z-index: 2; transform: translateX(-50%); font: 500 10.5px/1 var(--mono); letter-spacing: .18em; color: var(--muted); text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none; }
+  .scroll-cue::after { content: ""; width: 1px; height: 34px; background: linear-gradient(var(--muted), transparent); }
+
+  /* ---------- waitlist form ---------- */
+  .wl { width: 100%; max-width: 560px; }
+  .wl form { display: flex; gap: 6px; padding: 6px; background: rgba(22,17,14,.66); border: 1px solid var(--line-2); border-radius: 14px; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+  .wl input[type=email] { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--cream); font: 400 15px var(--mono); padding: 0 14px; min-height: 48px; outline: none; }
+  .wl input::placeholder { color: rgba(250,238,196,.5); }
+  .wl .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .note { font: 400 12px/1.6 var(--mono); color: var(--muted); }
+  .note b { color: var(--cream); font-weight: 500; }
+  .wl .err { font: 400 12.5px var(--mono); color: #F2B8A8; margin: 10px 0 0; text-align: left; min-height: 0; }
+  .wl .err:empty { display: none; }
+  .step2, .step3 { display: none; text-align: left; padding: 20px; background: rgba(22,17,14,.72); border: 1px solid var(--line-2); border-radius: 14px; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+  .wl[data-step="2"] form, .wl[data-step="3"] form { display: none; }
+  .wl[data-step="2"] .step2 { display: block; }
+  .wl[data-step="3"] .step3 { display: block; }
+  .step2 .q { font: 400 clamp(22px, 2.2vw, 28px)/1.2 var(--display); margin: 4px 0 14px; }
+  .step2 .opts { display: grid; gap: 8px; }
+  .step2 button { all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border: 1px solid var(--line-2); border-radius: 10px; font: 500 15px/1.35 var(--sans); color: var(--cream); background: rgba(250,238,196,.03); transition: border-color .2s, background .2s; }
+  .step2 button::after { content: "→"; color: var(--muted); font-family: var(--mono); }
+  .step2 button:hover, .step2 button:focus-visible { border-color: var(--cream); background: rgba(250,238,196,.07); }
+  .step2 .skip { all: unset; cursor: pointer; font: 400 12px var(--mono); color: var(--muted); margin-top: 12px; display: inline-block; text-decoration: underline; text-underline-offset: 3px; }
+  .step2 .skip::after { content: none; }
+  .step3 h3 { font-size: 30px; line-height: 1.1; margin: 0 0 8px; }
+  .step3 p { margin: 0; color: var(--text); font-size: 15px; }
+  .step-label { font: 500 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+  section { position: relative; }
+  .sec { padding: 110px 0; }
+  @media (min-width: 900px) { .sec { padding: 150px 0; } }
+  .head-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: 48px; }
+  .head-row p.side { max-width: 26em; color: var(--text); margin: 0; font-size: 15.5px; }
+
+  /* ---------- course carousel ---------- */
+  .arrows { display: none; gap: 10px; flex: none; }
+  .arrows button { width: 46px; height: 46px; border-radius: 12px; border: 1px solid var(--line-2); background: transparent; color: var(--cream); cursor: pointer; font: 400 18px var(--mono); transition: border-color .2s, background .2s; }
+  .arrows button:hover { border-color: var(--cream); background: rgba(250,238,196,.05); }
+  .arrows button:disabled { opacity: .3; cursor: default; }
+  @media (min-width: 900px) { .arrows { display: flex; } }
+  .track { display: grid; grid-auto-flow: column; grid-auto-columns: min(80vw, 330px); gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: var(--pad); padding: 0 var(--pad) 8px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .track::-webkit-scrollbar { display: none; }
+  @media (min-width: 900px) { .track { grid-auto-columns: 360px; gap: 24px; } }
+  @media (min-width: 1440px) { .track { padding-left: calc((100vw - var(--max)) / 2 + var(--pad)); scroll-padding-left: calc((100vw - var(--max)) / 2 + var(--pad)); } }
+  .part { scroll-snap-align: start; border-top: 1px solid var(--line-2); padding-top: 18px; display: flex; flex-direction: column; }
+  .part .lbl { font: 500 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 9px; }
+  .part .lbl::before { content: ""; width: 6px; height: 6px; background: var(--red); }
+  .part h3 { font-size: 27px; line-height: 1.12; letter-spacing: -.01em; margin: 14px 0 18px; min-height: 2.24em; }
+  .part .media { position: relative; aspect-ratio: 3 / 4; border-radius: 10px; overflow: hidden; background: var(--panel); }
+  .part .media video, .part .media img { width: 100%; height: 100%; object-fit: cover; }
+  .part .tools { font: 400 11.5px/1.6 var(--mono); color: var(--muted); margin: 16px 0 0; letter-spacing: .02em; }
+  .part .tools b { color: var(--cream); font-weight: 500; }
+  .part ul { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 9px; }
+  .part li { position: relative; padding-left: 16px; font-size: 14.5px; line-height: 1.5; color: var(--text); }
+  .part li::before { content: ""; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; background: var(--red); }
+  .part .out { margin-top: auto; padding-top: 16px; }
+  .part .out p { margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--line); font-size: 14px; color: var(--cream); }
+  .part .out span { display: block; font: 500 10.5px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+  .dots { display: flex; justify-content: center; gap: 7px; margin-top: 34px; }
+  .dots i { width: 6px; height: 6px; border-radius: 3px; background: var(--line-2); transition: width .25s, background .25s; }
+  .dots i.on { width: 22px; background: var(--red); }
+  .media .chip { position: absolute; left: 10px; bottom: 10px; font: 500 10.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; background: rgba(22,17,14,.82); color: var(--cream); padding: 7px 9px; border-radius: 6px; }
+
+  /* script sheet + autopilot panel (typographic media) */
+  .sheet { position: absolute; inset: 0; padding: 22px 20px; background: linear-gradient(180deg, #221B17, #1A1411); display: flex; flex-direction: column; }
+  .sheet .t { font: 500 10.5px/1 var(--mono); letter-spacing: .14em; color: var(--muted); text-transform: uppercase; }
+  .sheet .ep { font: 400 22px/1.15 var(--display); margin: 10px 0 16px; }
+  .sheet .row { display: grid; grid-template-columns: 44px 52px 1fr; gap: 6px; padding: 9px 0; border-top: 1px solid var(--line); font: 400 11.5px/1.45 var(--mono); color: var(--text); }
+  .sheet .row b { color: var(--cream); font-weight: 500; }
+  .sheet .row i { font-style: normal; color: #E4806F; }
+  .auto { position: absolute; inset: 0; padding: 22px 18px; background: radial-gradient(120% 80% at 100% 0%, rgba(163,35,26,.45), rgba(163,35,26,0) 60%), #1A1411; display: flex; flex-direction: column; gap: 9px; }
+  .auto .t { font: 500 10.5px/1 var(--mono); letter-spacing: .14em; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; }
+  .auto .job { border: 1px solid var(--line-2); border-radius: 10px; padding: 12px 12px; background: rgba(22,17,14,.6); font: 400 11.5px/1.45 var(--mono); color: var(--text); }
+  .auto .job b { display: block; color: var(--cream); font-weight: 500; margin-bottom: 3px; }
+  .auto .job .ok { color: #9FCB8E; }
+
+  /* ---------- belief ---------- */
+  .belief { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; }
+  .belief .mark { font: italic 400 84px/0.6 var(--serif); color: var(--red); display: block; margin: 8px 0 22px; }
+  .belief blockquote { margin: 0 auto; max-width: 21em; font: 400 clamp(30px, 4.1vw, 56px)/1.14 var(--serif); letter-spacing: -.01em; color: var(--cream); }
+  .belief blockquote em { font-size: 1em; }
+  .belief .by { margin-top: 30px; font: italic 400 22px var(--serif); color: var(--cream); }
+  .belief .by small { display: block; font: 500 10.5px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: 10px; font-style: normal; }
+
+  /* ---------- work bento ---------- */
+  .bento { display: grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: 170px; gap: 10px; }
+  .tile { position: relative; margin: 0; border-radius: 10px; overflow: hidden; background: var(--panel); }
+  .tile video, .tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+  .tile:hover video { transform: scale(1.03); }
+  .tile .chip { position: absolute; left: 10px; bottom: 10px; font: 500 10.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; background: rgba(22,17,14,.85); color: var(--cream); padding: 7px 9px; border-radius: 6px; }
+  .t-nonna { grid-column: span 2; grid-row: span 2; }
+  .t-hill { grid-row: span 2; }
+  .t-gta, .t-maya { grid-column: span 2; }
+  @media (min-width: 900px) {
+    .bento { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 250px; gap: 14px; }
+    .t-nonna { grid-column: 1 / 3; grid-row: 1 / 3; }
+    .t-hill { grid-column: 3 / 4; grid-row: 1 / 3; }
+    .t-dracula { grid-column: 4 / 5; grid-row: 1 / 2; }
+    .t-tot { grid-column: 4 / 5; grid-row: 2 / 3; }
+    .t-gta { grid-column: 1 / 3; grid-row: 3 / 4; }
+    .t-maya { grid-column: 3 / 5; grid-row: 3 / 4; }
   }
 
-  section { padding: 56px 0; border-top: 1px solid var(--line); }
-  h2 {
-    font-family: var(--title); font-weight: 400;
-    font-size: clamp(34px, 6.5vw, 52px); line-height: 1.05; margin: 0 0 10px;
-  }
-  h2 em { font-family: var(--accent); font-style: italic; }
-  .kicker { font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
-  .intro { color: var(--muted); max-width: 36em; margin: 0 0 28px; }
+  /* ---------- fit + faq ---------- */
+  .two { display: grid; gap: 80px; }
+  @media (min-width: 1000px) { .two { grid-template-columns: 1fr 1fr; gap: 80px; } }
+  .two h2 { font-size: clamp(36px, 4.2vw, 56px); }
+  .fit { display: grid; gap: 28px; margin-top: 40px; }
+  @media (min-width: 560px) { .fit { grid-template-columns: 1fr 1fr; } }
+  .fit h4 { margin: 0 0 4px; font: 500 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--cream); padding-bottom: 14px; border-bottom: 1px solid var(--line-2); }
+  .fit .no h4 { color: var(--muted); }
+  .fit p { margin: 0; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 15px; line-height: 1.55; color: var(--cream); }
+  .fit .no p { color: var(--muted); }
+  .faq { margin-top: 40px; border-top: 1px solid var(--line-2); }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary { list-style: none; cursor: pointer; display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding: 22px 0; font: 400 clamp(20px, 1.8vw, 24px)/1.25 var(--display); }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font: 400 20px var(--mono); color: var(--muted); transition: transform .25s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details p { margin: -6px 0 22px; color: var(--text); font-size: 15px; max-width: 36em; }
 
-  /* made with this method */
-  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .card { margin: 0; }
-  .card .media { border-radius: 12px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--panel); }
-  .card video { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .card figcaption { font-size: 14px; margin-top: 8px; line-height: 1.35; }
-  .card figcaption span { display: block; color: var(--muted); font-size: 13px; }
+  /* ---------- final CTA ---------- */
+  .cta-band { overflow: hidden; background: radial-gradient(120% 140% at 100% 100%, #C0301F 0%, #A3231A 22%, #5E140E 55%, #2A0C08 82%, #16110E 100%); }
+  .cta-band .container { display: grid; gap: 34px; align-items: end; padding-top: 110px; padding-bottom: 110px; }
+  @media (min-width: 1000px) { .cta-band .container { grid-template-columns: 1.35fr 1fr; gap: 56px; padding-top: 140px; padding-bottom: 140px; } }
+  .cta-band h2 { font-size: clamp(52px, 5.6vw, 88px); line-height: .95; letter-spacing: -.025em; }
+  @media (min-width: 1000px) { .cta-band h2 { white-space: nowrap; } }
+  .cta-band .kicker::before { background: var(--cream); }
+  .cta-band p.lead { margin: 20px 0 0; color: var(--cream); font-size: 16px; max-width: 28em; }
+  .cta-band .wl form { background: rgba(22,17,14,.82); border-color: rgba(250,238,196,.18); }
+  .cta-band .note { color: rgba(250,238,196,.75); margin-top: 12px; }
 
-  /* lessons */
-  .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-  .step {
-    background: var(--panel); border-radius: 14px; padding: 22px 20px 22px 18px;
-    display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start;
-  }
-  .step .n { font-family: var(--title); font-size: 28px; line-height: 1; color: var(--muted); padding-top: 1px; }
-  .step h3, .bonus h3 { margin: 0 0 8px; font-size: 19px; font-weight: 600; line-height: 1.3; }
-  .step p, .bonus p { margin: 0; color: var(--muted); font-size: 15px; }
-  .tools { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
-  .tools li {
-    font-size: 12.5px; font-weight: 600; color: var(--cream); background: var(--bg);
-    border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; line-height: 1.2;
-  }
-  .step .out { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--cream); font-size: 14.5px; }
-  .step .out b { font-weight: 600; color: var(--muted); }
-  .bonus { margin-top: 12px; border: 1px solid var(--red); border-radius: 14px; padding: 22px 20px; background: linear-gradient(180deg, rgba(163,35,26,.16), rgba(163,35,26,0) 70%); }
-  .bonus .pill { margin-bottom: 12px; }
-  .proof { margin-top: 20px; font-size: 15px; color: var(--muted); }
-  .proof strong { color: var(--cream); font-weight: 600; }
+  /* ---------- footer ---------- */
+  footer { padding: 56px 0 40px; }
+  footer .r1 { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+  footer nav { display: flex; flex-wrap: wrap; gap: 10px 28px; }
+  footer nav a { font: 500 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+  footer nav a:hover { color: var(--cream); }
+  footer .r2 { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; padding-top: 24px; font: 400 12px/1.6 var(--mono); color: var(--muted); }
+  #privacy { max-width: 40em; }
 
-  /* waitlist */
-  .join { background: var(--panel); border-radius: 20px; padding: 28px 20px; }
-  form { display: grid; gap: 18px; margin-top: 24px; }
-  label.field { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
-  input[type=text], input[type=email] {
-    width: 100%; font: 400 17px var(--ui); color: var(--cream);
-    background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
-    padding: 15px 14px; min-height: 52px;
-  }
-  input:focus-visible { outline: 2px solid var(--cream); outline-offset: 2px; }
-  fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; }
-  legend { font-size: 14px; font-weight: 600; margin-bottom: 10px; padding: 0; }
-  .opt {
-    display: flex; align-items: center; gap: 12px; cursor: pointer;
-    background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
-    padding: 14px; min-height: 56px; font-size: 16px; line-height: 1.3;
-  }
-  .opt input { accent-color: var(--red); width: 20px; height: 20px; flex: none; margin: 0; }
-  .opt:has(input:checked) { border-color: var(--cream); }
-  .opt small { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
-  .consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--muted); cursor: pointer; }
-  .consent input { accent-color: var(--red); width: 18px; height: 18px; margin: 2px 0 0; flex: none; }
-  .form-note { font-size: 13px; color: var(--muted); margin: 0; }
-  .err { color: #F2B8A8; font-size: 14px; margin: 0; min-height: 1em; }
-  .done { display: none; text-align: center; padding: 18px 0 6px; }
-  .done h3 { font-family: var(--title); font-weight: 400; font-size: 34px; margin: 0 0 8px; }
-  .done p { color: var(--muted); margin: 0 auto; max-width: 28em; }
-  .join.is-done form { display: none; }
-  .join.is-done .done { display: block; }
-  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  /* ---------- sticky phone CTA ---------- */
+  .sticky { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 30; transform: translateY(140%); transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+  .sticky .btn { width: 100%; min-height: 54px; box-shadow: 0 14px 34px rgba(0,0,0,.5); }
+  .sticky.show { transform: none; }
+  @media (min-width: 900px) { .sticky { display: none; } }
 
-  /* faq */
-  details { border-bottom: 1px solid var(--line); padding: 16px 0; }
-  summary { cursor: pointer; font-weight: 600; font-size: 17px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
-  summary::-webkit-details-marker { display: none; }
-  summary::after { content: "+"; color: var(--muted); font-weight: 400; font-size: 22px; line-height: 1; }
-  details[open] summary::after { content: "–"; }
-  details p { color: var(--muted); margin: 10px 0 0; font-size: 15px; }
-
-  footer { border-top: 1px solid var(--line); padding: 30px 0 44px; font-size: 14px; color: var(--muted); }
-  footer .row { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; justify-content: space-between; }
-  footer a { color: var(--muted); }
-
-  /* sticky phone CTA */
-  .sticky {
-    position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 20;
-    display: none;
+  /* reveal on scroll */
+  .rv { opacity: 0; transform: translateY(18px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+  .rv.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .rv { opacity: 1; transform: none; transition: none; }
   }
-  .sticky .cta { width: 100%; box-shadow: 0 12px 30px rgba(0,0,0,.5); }
-  .sticky.show { display: block; }
-
-  @media (min-width: 860px) {
-    .hero { grid-template-columns: 1fr 1.05fr; gap: 48px; padding: 44px 0 80px; }
-    section { padding: 80px 0; }
-    .cards { grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    .steps { grid-template-columns: 1fr 1fr; gap: 14px; }
-    .join { padding: 44px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 44px; align-items: start; }
-    .join form { margin-top: 0; }
-    .sticky { display: none !important; }
+  @media (max-width: 560px) {
+    .hero-media::after { background: linear-gradient(180deg, rgba(22,17,14,.78) 0%, rgba(22,17,14,.55) 35%, rgba(22,17,14,.62) 65%, var(--bg) 100%); }
+    .wl form { flex-direction: column; padding: 8px; }
+    .wl input[type=email] { min-height: 52px; text-align: center; }
+    .wl .btn { min-height: 52px; }
+    .hero .note { text-align: center; }
+    .top .btn { display: none; }
+    .head-row { margin-bottom: 36px; }
   }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
 
-<div class="wrap">
-  <header class="top">
-    <a class="brand" href="https://www.instagram.com/clone.creatives/" target="_blank" rel="noopener">
-      <img src="media/avatar.jpg" alt="">
-      <span>@clone.creatives</span>
+<header class="top">
+  <div class="container">
+    <a class="logo" href="https://www.instagram.com/clone.creatives/" target="_blank" rel="noopener" aria-label="Clone.ai on Instagram">
+      <img src="media/v2/avatar.jpg" alt="" width="34" height="34">
+      <span>Clone.ai</span>
     </a>
-    <a class="link" href="#join">Waitlist</a>
-  </header>
+    <a class="btn" href="#join">Join the waitlist</a>
+  </div>
+</header>
 
-  <main>
-    <div class="hero">
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-media" aria-hidden="true">
+      <video id="heroVideo" muted loop playsinline autoplay preload="auto" poster="media/v2/hero.jpg"></video>
+    </div>
+    <div class="hero-inner container">
+      <p class="kicker">AI Story Reels · Waitlist open</p>
+      <h1>AI Story Reels</h1>
+      <p class="sub">Any character. Any world. Reels people watch to the end.</p>
+      <p class="lead">The course behind our AI story reels: the idea, the characters, the shots, the sound and the edit. With the exact prompts and the real cost of every shot.</p>
+      <div class="wl" data-step="1"></div>
+      <p class="note">Free to join. The waitlist gets early access at <b>$49</b>. Price after launch: $97.</p>
+    </div>
+    <a class="scroll-cue" href="#course">Scroll</a>
+  </section>
+
+  <!-- COURSE -->
+  <section class="sec" id="course">
+    <div class="container head-row rv">
       <div>
-        <span class="pill">New course · Waitlist open</span>
-        <h1>AI Story Reels</h1>
-        <p class="sub">Any character. Any world. Reels people watch to the end.</p>
-        <p class="lead">Learn how we make cinematic AI story reels, from the first idea to the posted episode, with Higgsfield, Kling, Seedance and Claude Code. <strong>Step by step, with the exact prompts and the real cost of every shot.</strong></p>
-        <a class="cta" href="#join">Join the waitlist</a>
-        <p class="price-note">Waitlist gets early access at <strong>$49</strong>. Price after launch: $97.</p>
+        <p class="kicker">The course</p>
+        <h2>Six parts. One path<br>from <em>first idea</em> to posted episode.</h2>
       </div>
-      <div class="reel">
-        <video src="media/hero.mp4" poster="media/hero-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Montage of AI story reels made by Clone.ai"></video>
-        <span class="tag">Made with this method</span>
+      <div class="arrows" aria-label="Scroll the lessons">
+        <button type="button" id="prev" aria-label="Previous">←</button>
+        <button type="button" id="next" aria-label="Next">→</button>
       </div>
     </div>
 
-    <section>
-      <p class="kicker">Our reels</p>
-      <h2>Four stories. <em>Four different worlds.</em></h2>
-      <p class="intro">A grandma in Tuscany, a game character at sunset, a vampire on a video call. The course shows how each one was made, and how to make yours.</p>
-      <div class="cards">
-        <figure class="card">
-          <div class="media"><video src="media/card1.mp4" poster="media/card1.jpg" autoplay muted loop playsinline preload="none"></video></div>
-          <figcaption>Nonna's flying car<span>Comedy in a Tuscan village</span></figcaption>
-        </figure>
-        <figure class="card">
-          <div class="media"><video src="media/card2.mp4" poster="media/card2.jpg" autoplay muted loop playsinline preload="none"></video></div>
-          <figcaption>Hill Climb at dusk<span>A game character in the real world</span></figcaption>
-        </figure>
-        <figure class="card">
-          <div class="media"><video src="media/card3.mp4" poster="media/card3.jpg" autoplay muted loop playsinline preload="none"></video></div>
-          <figcaption>Dracula's 9-to-5<span>A series, episode by episode</span></figcaption>
-        </figure>
-        <figure class="card">
-          <div class="media"><video src="media/card4.mp4" poster="media/card4.jpg" autoplay muted loop playsinline preload="none"></video></div>
-          <figcaption>Trick or treat<span>A short horror twist</span></figcaption>
-        </figure>
-      </div>
-    </section>
+    <div class="track" id="track">
+      <article class="part">
+        <span class="lbl">Part 01</span>
+        <h3>Find an idea people will share</h3>
+        <div class="media"><video data-src="media/v2/c1-idea.mp4" poster="media/v2/c1-idea.jpg" muted loop playsinline preload="none"></video><span class="chip">Dracula · 9-to-5</span></div>
+        <p class="tools"><b>Tools</b> · Claude · Instagram &amp; TikTok research</p>
+        <ul>
+          <li>Pick a world, a character and a situation people already love</li>
+          <li>Break down a viral reel second by second</li>
+          <li>Turn one reference into ten ideas of your own</li>
+        </ul>
+        <div class="out"><p><span>You finish with</span>Three episode ideas, ranked by how likely they are to travel.</p></div>
+      </article>
 
-    <section>
-      <p class="kicker">What you'll learn</p>
-      <h2>From idea <em>to final cut.</em></h2>
-      <p class="intro">Six parts, in the exact order we make every reel. Each part ends with something finished, so by the end you have a full episode ready to post.</p>
-      <ol class="steps">
-        <li class="step"><span class="n">01</span><div>
-          <h3>Find an idea people will share</h3>
-          <p>How we pick a world, a character and a situation that people already love, then add a twist they don't expect. You'll learn to break down a viral reel second by second and turn what you see into ten ideas of your own.</p>
-          <ul class="tools"><li>Claude</li><li>Instagram &amp; TikTok research</li></ul>
-          <p class="out"><b>You finish with</b> three episode ideas, ranked by how likely they are to travel.</p>
-        </div></li>
-        <li class="step"><span class="n">02</span><div>
-          <h3>Build characters that never change face</h3>
-          <p>The master-frame method: generate a few candidates, pick one, and make every other shot as an edit of that frame. The face, hair, body and outfit stay the same in every scene. It works for realistic people, AI influencers, cartoon and game characters.</p>
-          <ul class="tools"><li>Higgsfield Soul</li><li>Nano Banana Pro</li></ul>
-          <p class="out"><b>You finish with</b> a master frame and a character sheet you can reuse in every episode.</p>
-        </div></li>
-        <li class="step"><span class="n">03</span><div>
-          <h3>Write the script in beats</h3>
-          <p>A hook in the first two seconds, a gag every few seconds, a twist at the end and a reason to wait for episode 2. You get the script prompts we use, plus a timing sheet that shows exactly where each beat lands.</p>
-          <ul class="tools"><li>Claude</li><li>Our script prompts</li></ul>
-          <p class="out"><b>You finish with</b> a shot-by-shot script for your first episode.</p>
-        </div></li>
-        <li class="step"><span class="n">04</span><div>
-          <h3>Direct the shots</h3>
-          <p>One keyframe for every beat: camera angle, lens, light and where each character stands. Then a checklist that catches the mistakes that give AI away, such as extra fingers, a wrong logo or a car with two different wheels.</p>
-          <ul class="tools"><li>Nano Banana Pro</li><li>Higgsfield</li></ul>
-          <p class="out"><b>You finish with</b> 6 to 12 approved keyframes.</p>
-        </div></li>
-        <li class="step"><span class="n">05</span><div>
-          <h3>Turn images into video, with voice</h3>
-          <p>Which model to use for which shot: Kling for faces and acting, Seedance for action and multi-shot scenes. You'll see the prompts that keep the spoken words intact and how to give a character its own voice. Every shot shows what it cost us in credits.</p>
-          <ul class="tools"><li>Kling</li><li>Seedance</li><li>Higgsfield</li><li>ElevenLabs</li></ul>
-          <p class="out"><b>You finish with</b> every clip of your episode and a budget for the next one.</p>
-        </div></li>
-        <li class="step"><span class="n">06</span><div>
-          <h3>Edit with Claude Code and post</h3>
-          <p>Claude Code edits the episode for you: music cut on the beat, sound effects, captions, a film look and the right loudness for Instagram. Then the 4:3 format, a cover that gets the tap, and the caption.</p>
-          <ul class="tools"><li>Claude Code</li><li>Remotion</li><li>CapCut</li></ul>
-          <p class="out"><b>You finish with</b> a finished episode, posted.</p>
-        </div></li>
-      </ol>
-      <div class="bonus">
-        <span class="pill">Bonus</span>
-        <h3>Your content studio on autopilot</h3>
-        <p>The automations we run every week: Claude Code projects that schedule your posts on Instagram, TikTok and YouTube, send a link to everyone who comments your keyword, and write you a weekly report of what worked.</p>
-        <ul class="tools"><li>Claude Code</li><li>Metricool</li><li>ManyChat</li><li>Notion</li></ul>
-      </div>
-      <p class="proof"><strong>Every lesson is dated</strong> and names the tool version it was recorded on, so you always know if something changed.</p>
-    </section>
+      <article class="part">
+        <span class="lbl">Part 02</span>
+        <h3>Characters that never change face</h3>
+        <div class="media"><img src="media/v2/c2-characters.jpg" alt="Character sheet of Nonna in four views, and the same face in three scenes" loading="lazy"><span class="chip">Character sheet</span></div>
+        <p class="tools"><b>Tools</b> · Higgsfield Soul · Nano Banana Pro</p>
+        <ul>
+          <li>The master-frame method, step by step</li>
+          <li>Same face, hair, body and outfit in every scene</li>
+          <li>Realistic people, AI influencers, cartoon and game characters</li>
+        </ul>
+        <div class="out"><p><span>You finish with</span>A master frame and a character sheet you reuse in every episode.</p></div>
+      </article>
 
-    <section id="join">
-      <div class="join" id="joinBox">
-        <div>
-          <p class="kicker">Waitlist</p>
-          <h2>Get early <em>access.</em></h2>
-          <p class="intro" style="margin-bottom:0">Join the list and you'll hear first when the course opens, at the <strong style="color:var(--cream)">$49</strong> early-access price. No payment now.</p>
+      <article class="part">
+        <span class="lbl">Part 03</span>
+        <h3>Write the script in beats</h3>
+        <div class="media">
+          <div class="sheet" aria-label="Example script, written in beats">
+            <span class="t">Script · Ep. 01</span>
+            <span class="ep">Nonna's flying car</span>
+            <div class="row"><b>00.0</b><i>HOOK</i><span>The garage opens. Nonna is at the wheel.</span></div>
+            <div class="row"><b>04.2</b><i>GAG</i><span>Luca screams. Nonna doesn't blink.</span></div>
+            <div class="row"><b>08.6</b><i>BEAT</i><span>"Nonna, the sheep!"</span></div>
+            <div class="row"><b>16.1</b><i>DROP</i><span>The car lifts off over the flock.</span></div>
+            <div class="row"><b>28.2</b><i>LAND</i><span>It lands in the piazza. The baker stares.</span></div>
+            <div class="row"><b>36.5</b><i>GAG</i><span>She buys bread like nothing happened.</span></div>
+            <div class="row"><b>49.0</b><i>TWIST</i><span>"Eh… a bit slow."</span></div>
+          </div>
         </div>
+        <p class="tools"><b>Tools</b> · Claude · our script prompts</p>
+        <ul>
+          <li>A hook in the first two seconds</li>
+          <li>A gag every few seconds and a twist at the end</li>
+          <li>A reason to wait for episode 2</li>
+        </ul>
+        <div class="out"><p><span>You finish with</span>A shot-by-shot script for your first episode.</p></div>
+      </article>
+
+      <article class="part">
+        <span class="lbl">Part 04</span>
+        <h3>Direct every shot</h3>
+        <div class="media"><img src="media/v2/c4-shots.jpg" alt="Six keyframes from the Nonna episode" loading="lazy"><span class="chip">Keyframes</span></div>
+        <p class="tools"><b>Tools</b> · Nano Banana Pro · Higgsfield</p>
+        <ul>
+          <li>One keyframe per beat: angle, lens, light and blocking</li>
+          <li>A checklist that catches what gives AI away</li>
+          <li>Extra fingers, wrong logos, a car with two different wheels</li>
+        </ul>
+        <div class="out"><p><span>You finish with</span>6 to 12 approved keyframes.</p></div>
+      </article>
+
+      <article class="part">
+        <span class="lbl">Part 05</span>
+        <h3>Images into video, with voice</h3>
+        <div class="media"><video data-src="media/v2/c5-video.mp4" poster="media/v2/c5-video.jpg" muted loop playsinline preload="none"></video><span class="chip">Kling · Seedance</span></div>
+        <p class="tools"><b>Tools</b> · Kling · Seedance · Higgsfield · ElevenLabs</p>
+        <ul>
+          <li>Kling for faces and acting, Seedance for action and multi-shot scenes</li>
+          <li>Prompts that keep the spoken words intact</li>
+          <li>A voice for every character, and what every shot cost us</li>
+        </ul>
+        <div class="out"><p><span>You finish with</span>Every clip of your episode, and a budget for the next one.</p></div>
+      </article>
+
+      <article class="part">
+        <span class="lbl">Part 06</span>
+        <h3>Edit with Claude Code and post</h3>
+        <div class="media"><video data-src="media/v2/c6-edit.mp4" poster="media/v2/c6-edit.jpg" muted loop playsinline preload="none"></video><span class="chip">Claude Code edits</span></div>
+        <p class="tools"><b>Tools</b> · Claude Code · Remotion · CapCut</p>
+        <ul>
+          <li>Music cut on the beat, sound effects and captions</li>
+          <li>A film look and the right loudness for Instagram</li>
+          <li>The 4:3 format, a cover that gets the tap, the caption</li>
+        </ul>
+        <div class="out"><p><span>You finish with</span>A finished episode, posted.</p></div>
+      </article>
+
+      <article class="part">
+        <span class="lbl">Bonus</span>
+        <h3>Your content studio on autopilot</h3>
+        <div class="media">
+          <div class="auto" aria-label="Examples of weekly automations">
+            <span class="t">Automations · every week</span>
+            <div class="job"><b>Schedule</b>New episode → Instagram, TikTok and YouTube at the best hour. <span class="ok">✓</span></div>
+            <div class="job"><b>Comment to DM</b>Someone comments your keyword → they get the link in their DMs. <span class="ok">✓</span></div>
+            <div class="job"><b>Weekly report</b>Monday 9:00 → what worked, what didn't, what to post next. <span class="ok">✓</span></div>
+            <div class="job"><b>Breakdown page</b>Every reel → a page with the prompts, ready to share. <span class="ok">✓</span></div>
+          </div>
+        </div>
+        <p class="tools"><b>Tools</b> · Claude Code · Metricool · ManyChat · Notion</p>
+        <ul>
+          <li>The Claude Code projects we run every week</li>
+          <li>Post everywhere from one place</li>
+          <li>Know what worked without opening five dashboards</li>
+        </ul>
+        <div class="out"><p><span>You finish with</span>Your own studio running in the background.</p></div>
+      </article>
+    </div>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+  </section>
+
+  <!-- BELIEF -->
+  <section class="sec belief">
+    <div class="container rv">
+      <p class="kicker">What we believe</p>
+      <span class="mark" aria-hidden="true">“</span>
+      <blockquote><em>People share stories.</em> A character they care about, a situation they know, a twist they didn't see coming. Learn to build those, and the tools become the easy part.</blockquote>
+      <div class="by">Clone.ai<small>@clone.creatives</small></div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="sec" id="work">
+    <div class="container">
+      <div class="head-row rv">
         <div>
-          <form id="waitlist" novalidate>
-            <label class="field">First name
-              <input type="text" name="name" autocomplete="given-name" placeholder="Your first name">
-            </label>
-            <label class="field">Email
-              <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
-            </label>
-            <fieldset>
-              <legend>What do you want to learn first?</legend>
-              <label class="opt"><input type="radio" name="interest" value="ai-characters" required>
-                <span>Realistic AI characters &amp; AI influencers</span></label>
-              <label class="opt"><input type="radio" name="interest" value="story-reels">
-                <span>AI story &amp; cinematic reels</span></label>
-              <label class="opt"><input type="radio" name="interest" value="claude-code">
-                <span>Claude Code: automations &amp; edits</span></label>
-            </fieldset>
-            <label class="hp" aria-hidden="true">Leave this empty <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
-            <label class="consent"><input type="checkbox" name="consent" value="yes" required>
-              <span>Email me about the course launch. I can unsubscribe anytime.</span></label>
-            <p class="err" id="err" role="alert"></p>
-            <button class="cta" type="submit" id="submitBtn">Join the waitlist</button>
-            <p class="form-note">We only use your email for this course. No spam, no sharing.</p>
-          </form>
-          <div class="done" role="status">
-            <h3>You're on the list.</h3>
-            <p>We'll email you when early access opens. Meanwhile, the next reel is on Instagram: <a href="https://www.instagram.com/clone.creatives/" target="_blank" rel="noopener">@clone.creatives</a>.</p>
+          <p class="kicker">Our reels</p>
+          <h2>Every frame, <em>made by us.</em></h2>
+        </div>
+        <p class="side">Comedy, horror, game worlds and a series. All made with the method in this course.</p>
+      </div>
+      <div class="bento rv">
+        <figure class="tile t-nonna"><video data-src="media/v2/w-nonna.mp4" poster="media/v2/w-nonna.jpg" muted loop playsinline preload="none"></video><figcaption class="chip">Comedy · Nonna's flying car</figcaption></figure>
+        <figure class="tile t-hill"><video data-src="media/v2/w-hill.mp4" poster="media/v2/w-hill.jpg" muted loop playsinline preload="none"></video><figcaption class="chip">Game world</figcaption></figure>
+        <figure class="tile t-dracula"><video data-src="media/v2/w-dracula.mp4" poster="media/v2/w-dracula.jpg" muted loop playsinline preload="none"></video><figcaption class="chip">Series</figcaption></figure>
+        <figure class="tile t-tot"><video data-src="media/v2/w-tot.mp4" poster="media/v2/w-tot.jpg" muted loop playsinline preload="none"></video><figcaption class="chip">Horror</figcaption></figure>
+        <figure class="tile t-gta"><video data-src="media/v2/w-gta.mp4" poster="media/v2/w-gta.jpg" muted loop playsinline preload="none"></video><figcaption class="chip">Meme · flying cars</figcaption></figure>
+        <figure class="tile t-maya"><video data-src="media/v2/w-maya.mp4" poster="media/v2/w-maya.jpg" muted loop playsinline preload="none"></video><figcaption class="chip">AI character</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIT + FAQ -->
+  <section class="sec" style="padding-top:0">
+    <div class="container">
+      <div class="two" style="border-top:1px solid var(--line); padding-top:110px">
+        <div class="rv">
+          <p class="kicker">Who it's for</p>
+          <h2>Is this course <em>for you?</em></h2>
+          <div class="fit">
+            <div class="yes">
+              <h4>This is for you if</h4>
+              <p>You want to make AI reels people watch, share and follow.</p>
+              <p>You're ready to learn the craft: story, shots, sound and edit.</p>
+              <p>You want one clear process you can repeat for every episode.</p>
+            </div>
+            <div class="no">
+              <h4>This is not for you if</h4>
+              <p>You only want a prompt pack or one-click results.</p>
+              <p>You're looking for a promise of income or views.</p>
+              <p>You'll collect lessons and never make anything.</p>
+            </div>
+          </div>
+        </div>
+        <div class="rv">
+          <p class="kicker">Before you join</p>
+          <h2>Questions, <em>answered.</em></h2>
+          <div class="faq">
+            <details><summary>Is the waitlist free?</summary><p>Yes. Joining is free and commits you to nothing. You'll get the full details before the course opens.</p></details>
+            <details><summary>How much is the course?</summary><p>$49 early access for the waitlist. After launch it's $97. One payment, no subscription.</p></details>
+            <details><summary>When does it open?</summary><p>Soon. Everyone on the waitlist hears first, by email.</p></details>
+            <details><summary>I'm new to AI. Is this for me?</summary><p>Yes. It starts from the first idea and goes step by step to the posted episode. You need a computer and the will to make things.</p></details>
+            <details><summary>Which tools do I need, and what do they cost?</summary><p>AI image and video tools such as Higgsfield, Kling and Seedance, plus Claude and an editor. Some are paid. Every lesson shows what each shot cost us, so you can plan your budget.</p></details>
+            <details><summary>Will this make me money?</summary><p>We teach the craft of reels people watch. We don't promise income, followers or views.</p></details>
           </div>
         </div>
       </div>
-    </section>
-
-    <section>
-      <p class="kicker">Questions</p>
-      <h2>FAQ</h2>
-      <details><summary>When does the course open?</summary><p>The waitlist hears first, before anyone else. We'll email you the opening date.</p></details>
-      <details><summary>How much will it cost?</summary><p>$49 early access for the waitlist. After launch, the price is $97. One payment, no subscription.</p></details>
-      <details><summary>Do I need experience?</summary><p>No. You should be comfortable on a computer, and the course goes step by step from the first idea to the final cut.</p></details>
-      <details><summary>Which tools do I need, and what do they cost?</summary><p>AI image and video tools (such as Higgsfield, Kling and Seedance) and an editor. Some of them are paid. Every lesson shows what each shot cost us, so you can plan your budget.</p></details>
-      <details><summary>Will this make me money?</summary><p>We teach the craft: how to make reels people watch. We don't promise income or views.</p></details>
-    </section>
-  </main>
-
-  <footer>
-    <div class="row">
-      <span>© Clone.ai · <a href="https://www.instagram.com/clone.creatives/" target="_blank" rel="noopener">@clone.creatives</a></span>
-      <a href="https://www.skool.com/cloneai-the-ecosystem-4958/about" target="_blank" rel="noopener">Community: AI Virality Creators</a>
     </div>
-  </footer>
-</div>
+  </section>
 
-<div class="sticky" id="sticky"><a class="cta" href="#join">Join the waitlist</a></div>
+  <!-- FINAL CTA -->
+  <section class="cta-band" id="join">
+    <div class="container">
+      <div class="rv">
+        <p class="kicker">Early access</p>
+        <h2>Doors open <em>soon.</em></h2>
+        <p class="lead">The waitlist hears first, at the $49 early-access price.</p>
+      </div>
+      <div class="rv">
+        <div class="wl" data-step="1"></div>
+        <p class="note">Free to join. No payment now. We only email you about this course.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="r1">
+      <a class="logo" href="https://www.instagram.com/clone.creatives/" target="_blank" rel="noopener"><img src="media/v2/avatar.jpg" alt="" width="34" height="34"><span>Clone.ai</span></a>
+      <nav>
+        <a href="https://www.instagram.com/clone.creatives/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.skool.com/cloneai-the-ecosystem-4958/about" target="_blank" rel="noopener">Community</a>
+        <a href="#privacy">Privacy</a>
+      </nav>
+    </div>
+    <div class="r2">
+      <span>© 2026 Clone.ai. All rights reserved.</span>
+      <span id="privacy">Privacy: we use your email only to tell you about this course. Unsubscribe anytime.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky"><a class="btn" href="#join">Join the waitlist</a></div>
+
+<template id="wlTpl">
+  <form novalidate>
+    <label class="hp" aria-hidden="true">Leave this empty <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+    <input type="email" name="email" placeholder="Enter your email" autocomplete="email" inputmode="email" aria-label="Email address" required>
+    <button class="btn" type="submit">Join the waitlist</button>
+  </form>
+  <p class="err" role="alert"></p>
+  <div class="step2">
+    <span class="step-label">You're on the list · one question</span>
+    <p class="q">What do you want to learn first?</p>
+    <div class="opts">
+      <button type="button" data-v="Realistic AI characters & AI influencers">Realistic AI characters &amp; AI influencers</button>
+      <button type="button" data-v="AI story & cinematic reels">AI story &amp; cinematic reels</button>
+      <button type="button" data-v="Claude Code: automations & edits">Claude Code: automations &amp; edits</button>
+    </div>
+    <button type="button" class="skip" data-v="">Skip</button>
+  </div>
+  <div class="step3" role="status">
+    <span class="step-label">Done</span>
+    <h3>You're on the list.</h3>
+    <p>We'll email you when early access opens. Until then, new episodes go up on <a href="https://www.instagram.com/clone.creatives/" target="_blank" rel="noopener">@clone.creatives</a>.</p>
+  </div>
+</template>
 
 <script>
   // Sign-ups go to a Google Form, which writes them into the Google Sheet "AI Story Reels - Waitlist (emails)".
   const FORM_ENDPOINT = "https://docs.google.com/forms/d/e/1FAIpQLScEEFtgtv-gv96Yuxw6dpy-66pvpQN54YJC-MPPgMBpJYy4LA/formResponse";
   const FIELDS = { name: "entry.1129595107", email: "entry.1768280309", interest: "entry.232848547", source: "entry.913852099" };
-  const INTEREST_LABELS = {
-    "ai-characters": "Realistic AI characters & AI influencers",
-    "story-reels": "AI story & cinematic reels",
-    "claude-code": "Claude Code: automations & edits"
-  };
+  const params = new URLSearchParams(location.search);
+  const SOURCE = params.get("src") || params.get("utm_source") || (document.referrer ? (() => { try { return new URL(document.referrer).hostname; } catch (_) { return "referrer"; } })() : "direct");
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (params.has("shot")) document.documentElement.classList.add("shot"); // screenshot mode: fixed hero height
 
-  const form = document.getElementById("waitlist");
-  const box = document.getElementById("joinBox");
-  const err = document.getElementById("err");
-  const btn = document.getElementById("submitBtn");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    err.textContent = "";
-    const data = new FormData(form);
-    if (data.get("company")) return; // bot
-    const email = (data.get("email") || "").trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = "Please enter a valid email."; return; }
-    if (!data.get("interest")) { err.textContent = "Pick what you want to learn first."; return; }
-    if (!data.get("consent")) { err.textContent = "Tick the box so we can email you."; return; }
-
-    const params = new URLSearchParams(location.search);
+  function send(email, interest) {
     const body = new URLSearchParams();
-    body.set(FIELDS.name, (data.get("name") || "").trim());
+    body.set(FIELDS.name, "");
     body.set(FIELDS.email, email);
-    body.set(FIELDS.interest, INTEREST_LABELS[data.get("interest")] || data.get("interest"));
-    body.set(FIELDS.source, params.get("src") || params.get("utm_source") || (document.referrer ? new URL(document.referrer).hostname : "direct"));
+    body.set(FIELDS.interest, interest);
+    body.set(FIELDS.source, SOURCE);
+    return fetch(FORM_ENDPOINT, { method: "POST", mode: "no-cors", body, keepalive: true });
+  }
 
-    btn.disabled = true; btn.textContent = "Joining…";
-    try {
-      await fetch(FORM_ENDPOINT, { method: "POST", mode: "no-cors", body });
-      box.classList.add("is-done");
-    } catch (_) {
-      err.textContent = "Something went wrong. Please try again.";
-      btn.disabled = false; btn.textContent = "Join the waitlist";
-    }
+  // waitlist widgets: 1) email  2) one question  3) done
+  const tpl = document.getElementById("wlTpl");
+  document.querySelectorAll(".wl").forEach((wl) => {
+    wl.appendChild(tpl.content.cloneNode(true));
+    const form = wl.querySelector("form"), err = wl.querySelector(".err"), btn = form.querySelector(".btn");
+    let email = "";
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      err.textContent = "";
+      if (form.company.value) return;
+      email = form.email.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = "Please enter a valid email."; form.email.focus(); return; }
+      btn.disabled = true; btn.textContent = "Joining…";
+      try { await send(email, "(not answered yet)"); wl.dataset.step = "2"; wl.querySelector(".opts button").focus({ preventScroll: true }); }
+      catch (_) { err.textContent = "Something went wrong. Please try again."; btn.disabled = false; btn.textContent = "Join the waitlist"; }
+    });
+    wl.querySelectorAll(".step2 button").forEach((b) => b.addEventListener("click", () => {
+      if (b.dataset.v) send(email, b.dataset.v).catch(() => {});
+      wl.dataset.step = "3";
+      document.querySelectorAll(".wl").forEach((o) => { if (o !== wl) o.dataset.step = "3"; });
+    }));
   });
 
-  // phone: show a sticky button until the form is on screen
-  const sticky = document.getElementById("sticky");
-  const join = document.getElementById("join");
-  const hero = document.querySelector(".hero .cta");
+  // hero video: lighter file on phones
+  const hv = document.getElementById("heroVideo");
+  if (!reduceMotion) {
+    hv.src = innerWidth < 768 ? "media/v2/hero-m.mp4" : "media/v2/hero.mp4";
+    hv.play().catch(() => {});
+  }
+
+  // lazy videos: load near the screen, play only while visible
+  const vids = document.querySelectorAll("video[data-src]");
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+      const v = en.target;
+      if (en.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); }
+      else if (v.src) v.pause();
+    }), { rootMargin: "200px 0px" });
+    vids.forEach((v) => io.observe(v));
+  }
+
+  // reveal on scroll
+  const rvs = document.querySelectorAll(".rv");
   if ("IntersectionObserver" in window) {
-    let heroVisible = true, joinVisible = false;
-    const update = () => sticky.classList.toggle("show", !heroVisible && !joinVisible);
-    new IntersectionObserver(([en]) => { heroVisible = en.isIntersecting; update(); }).observe(hero);
-    new IntersectionObserver(([en]) => { joinVisible = en.isIntersecting; update(); }, { rootMargin: "0px 0px -20% 0px" }).observe(join);
+    const ro = new IntersectionObserver((entries) => entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); ro.unobserve(en.target); } }), { rootMargin: "0px 0px -8% 0px" });
+    rvs.forEach((el) => ro.observe(el));
+  } else rvs.forEach((el) => el.classList.add("in"));
+
+  // carousel arrows + dots
+  const track = document.getElementById("track"), parts = [...track.children], dots = document.getElementById("dots");
+  parts.forEach(() => dots.appendChild(document.createElement("i")));
+  const step = () => parts[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 24);
+  document.getElementById("prev").onclick = () => track.scrollBy({ left: -step(), behavior: "smooth" });
+  document.getElementById("next").onclick = () => track.scrollBy({ left: step(), behavior: "smooth" });
+  const onScroll = () => {
+    const i = Math.round(track.scrollLeft / step());
+    [...dots.children].forEach((d, k) => d.classList.toggle("on", k === Math.min(i, parts.length - 1)));
+    document.getElementById("prev").disabled = track.scrollLeft < 4;
+    document.getElementById("next").disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+  };
+  track.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+  // phone: sticky button after the hero, hidden near the final form
+  const sticky = document.getElementById("sticky");
+  if ("IntersectionObserver" in window) {
+    let heroIn = true, joinIn = false;
+    const upd = () => sticky.classList.toggle("show", !heroIn && !joinIn);
+    new IntersectionObserver(([en]) => { heroIn = en.isIntersecting; upd(); }).observe(document.querySelector(".hero .wl"));
+    new IntersectionObserver(([en]) => { joinIn = en.isIntersecting; upd(); }, { rootMargin: "0px 0px -10% 0px" }).observe(document.getElementById("join"));
   }
 </script>
 </body>
