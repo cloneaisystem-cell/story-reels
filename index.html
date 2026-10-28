@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Story Reels · Waitlist</title>
+<meta name="description" content="Learn to make cinematic AI story reels with any character: idea, characters, shots, sound and edit. Join the waitlist for early access.">
+<meta property="og:title" content="AI Story Reels · Waitlist">
+<meta property="og:description" content="Cinematic AI story reels, step by step. Join the waitlist for early access.">
+<meta property="og:image" content="media/hero-poster.jpg">
+<meta name="theme-color" content="#16110E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #16110E;
+    --panel: #2B2420;
+    --line: #3A302A;
+    --cream: #FAEEC4;
+    --red: #A3231A;
+    --muted: #B8A58A;
+    --title: "DM Serif Display", Georgia, serif;
+    --accent: "Instrument Serif", Georgia, serif;
+    --ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--ui);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--cream); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+  /* top bar */
+  .top { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; font-size: 15px; }
+  .brand img { width: 34px; height: 34px; border-radius: 50%; display: block; }
+  .top .link { font-size: 14px; color: var(--muted); text-decoration: none; }
+  .top .link:hover { color: var(--cream); }
+
+  /* hero */
+  .hero { padding: 28px 0 56px; display: grid; gap: 32px; align-items: center; }
+  .pill {
+    display: inline-block; background: var(--red); color: var(--cream);
+    font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+    padding: 7px 12px; border-radius: 999px;
+  }
+  h1 {
+    font-family: var(--title); font-weight: 400;
+    font-size: clamp(52px, 11vw, 92px); line-height: .98; letter-spacing: -.01em;
+    margin: 18px 0 10px;
+  }
+  .sub {
+    font-family: var(--accent); font-style: italic;
+    font-size: clamp(26px, 5.4vw, 36px); line-height: 1.15; margin: 0 0 18px;
+  }
+  .lead { color: var(--muted); max-width: 34em; margin: 0 0 26px; }
+  .lead strong { color: var(--cream); font-weight: 600; }
+  .cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--red); color: var(--cream); text-decoration: none; border: 0;
+    font: 600 17px/1 var(--ui); padding: 18px 26px; border-radius: 12px; cursor: pointer;
+    min-height: 56px;
+  }
+  .cta:hover { filter: brightness(1.12); }
+  .price-note { font-size: 14px; color: var(--muted); margin-top: 12px; }
+  .price-note s { opacity: .8; }
+  .reel {
+    position: relative; border-radius: 16px; overflow: hidden; background: var(--panel);
+    aspect-ratio: 4 / 3; box-shadow: 0 30px 80px rgba(0,0,0,.45);
+  }
+  .reel video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .reel .tag {
+    position: absolute; left: 14px; bottom: 14px; background: rgba(22,17,14,.78);
+    font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    padding: 6px 10px; border-radius: 8px; color: var(--cream);
+  }
+
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  h2 {
+    font-family: var(--title); font-weight: 400;
+    font-size: clamp(34px, 6.5vw, 52px); line-height: 1.05; margin: 0 0 10px;
+  }
+  h2 em { font-family: var(--accent); font-style: italic; }
+  .kicker { font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+  .intro { color: var(--muted); max-width: 36em; margin: 0 0 28px; }
+
+  /* made with this method */
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .card { margin: 0; }
+  .card .media { border-radius: 12px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--panel); }
+  .card video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card figcaption { font-size: 14px; margin-top: 8px; line-height: 1.35; }
+  .card figcaption span { display: block; color: var(--muted); font-size: 13px; }
+
+  /* lessons */
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .step {
+    background: var(--panel); border-radius: 14px; padding: 22px 20px 22px 18px;
+    display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start;
+  }
+  .step .n { font-family: var(--title); font-size: 28px; line-height: 1; color: var(--muted); padding-top: 1px; }
+  .step h3, .bonus h3 { margin: 0 0 8px; font-size: 19px; font-weight: 600; line-height: 1.3; }
+  .step p, .bonus p { margin: 0; color: var(--muted); font-size: 15px; }
+  .tools { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tools li {
+    font-size: 12.5px; font-weight: 600; color: var(--cream); background: var(--bg);
+    border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; line-height: 1.2;
+  }
+  .step .out { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--cream); font-size: 14.5px; }
+  .step .out b { font-weight: 600; color: var(--muted); }
+  .bonus { margin-top: 12px; border: 1px solid var(--red); border-radius: 14px; padding: 22px 20px; background: linear-gradient(180deg, rgba(163,35,26,.16), rgba(163,35,26,0) 70%); }
+  .bonus .pill { margin-bottom: 12px; }
+  .proof { margin-top: 20px; font-size: 15px; color: var(--muted); }
+  .proof strong { color: var(--cream); font-weight: 600; }
+
+  /* waitlist */
+  .join { background: var(--panel); border-radius: 20px; padding: 28px 20px; }
+  form { display: grid; gap: 18px; margin-top: 24px; }
+  label.field { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
+  input[type=text], input[type=email] {
+    width: 100%; font: 400 17px var(--ui); color: var(--cream);
+    background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
+    padding: 15px 14px; min-height: 52px;
+  }
+  input:focus-visible { outline: 2px solid var(--cream); outline-offset: 2px; }
+  fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; }
+  legend { font-size: 14px; font-weight: 600; margin-bottom: 10px; padding: 0; }
+  .opt {
+    display: flex; align-items: center; gap: 12px; cursor: pointer;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
+    padding: 14px; min-height: 56px; font-size: 16px; line-height: 1.3;
+  }
+  .opt input { accent-color: var(--red); width: 20px; height: 20px; flex: none; margin: 0; }
+  .opt:has(input:checked) { border-color: var(--cream); }
+  .opt small { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--muted); cursor: pointer; }
+  .consent input { accent-color: var(--red); width: 18px; height: 18px; margin: 2px 0 0; flex: none; }
+  .form-note { font-size: 13px; color: var(--muted); margin: 0; }
+  .err { color: #F2B8A8; font-size: 14px; margin: 0; min-height: 1em; }
+  .done { display: none; text-align: center; padding: 18px 0 6px; }
+  .done h3 { font-family: var(--title); font-weight: 400; font-size: 34px; margin: 0 0 8px; }
+  .done p { color: var(--muted); margin: 0 auto; max-width: 28em; }
+  .join.is-done form { display: none; }
+  .join.is-done .done { display: block; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  /* faq */
+  details { border-bottom: 1px solid var(--line); padding: 16px 0; }
+  summary { cursor: pointer; font-weight: 600; font-size: 17px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--muted); font-weight: 400; font-size: 22px; line-height: 1; }
+  details[open] summary::after { content: "–"; }
+  details p { color: var(--muted); margin: 10px 0 0; font-size: 15px; }
+
+  footer { border-top: 1px solid var(--line); padding: 30px 0 44px; font-size: 14px; color: var(--muted); }
+  footer .row { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; justify-content: space-between; }
+  footer a { color: var(--muted); }
+
+  /* sticky phone CTA */
+  .sticky {
+    position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 20;
+    display: none;
+  }
+  .sticky .cta { width: 100%; box-shadow: 0 12px 30px rgba(0,0,0,.5); }
+  .sticky.show { display: block; }
+
+  @media (min-width: 860px) {
+    .hero { grid-template-columns: 1fr 1.05fr; gap: 48px; padding: 44px 0 80px; }
+    section { padding: 80px 0; }
+    .cards { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .join { padding: 44px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 44px; align-items: start; }
+    .join form { margin-top: 0; }
+    .sticky { display: none !important; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="https://www.instagram.com/clone.creatives/" target="_blank" rel="noopener">
+      <img src="media/avatar.jpg" alt="">
+      <span>@clone.creatives</span>
+    </a>
+    <a class="link" href="#join">Waitlist</a>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <span class="pill">New course · Waitlist open</span>
+        <h1>AI Story Reels</h1>
+        <p class="sub">Any character. Any world. Reels people watch to the end.</p>
+        <p class="lead">Learn how we make cinematic AI story reels, from the first idea to the posted episode, with Higgsfield, Kling, Seedance and Claude Code. <strong>Step by step, with the exact prompts and the real cost of every shot.</strong></p>
+        <a class="cta" href="#join">Join the waitlist</a>
+        <p class="price-note">Waitlist gets early access at <strong>$49</strong>. Price after launch: $97.</p>
+      </div>
+      <div class="reel">
+        <video src="media/hero.mp4" poster="media/hero-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Montage of AI story reels made by Clone.ai"></video>
+        <span class="tag">Made with this method</span>
+      </div>
+    </div>
+
+    <section>
+      <p class="kicker">Our reels</p>
+      <h2>Four stories. <em>Four different worlds.</em></h2>
+      <p class="intro">A grandma in Tuscany, a game character at sunset, a vampire on a video call. The course shows how each one was made, and how to make yours.</p>
+      <div class="cards">
+        <figure class="card">
+          <div class="media"><video src="media/card1.mp4" poster="media/card1.jpg" autoplay muted loop playsinline preload="none"></video></div>
+          <figcaption>Nonna's flying car<span>Comedy in a Tuscan village</span></figcaption>
+        </figure>
+        <figure class="card">
+          <div class="media"><video src="media/card2.mp4" poster="media/card2.jpg" autoplay muted loop playsinline preload="none"></video></div>
+          <figcaption>Hill Climb at dusk<span>A game character in the real world</span></figcaption>
+        </figure>
+        <figure class="card">
+          <div class="media"><video src="media/card3.mp4" poster="media/card3.jpg" autoplay muted loop playsinline preload="none"></video></div>
+          <figcaption>Dracula's 9-to-5<span>A series, episode by episode</span></figcaption>
+        </figure>
+        <figure class="card">
+          <div class="media"><video src="media/card4.mp4" poster="media/card4.jpg" autoplay muted loop playsinline preload="none"></video></div>
+          <figcaption>Trick or treat<span>A short horror twist</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <p class="kicker">What you'll learn</p>
+      <h2>From idea <em>to final cut.</em></h2>
+      <p class="intro">Six parts, in the exact order we make every reel. Each part ends with something finished, so by the end you have a full episode ready to post.</p>
+      <ol class="steps">
+        <li class="step"><span class="n">01</span><div>
+          <h3>Find an idea people will share</h3>
+          <p>How we pick a world, a character and a situation that people already love, then add a twist they don't expect. You'll learn to break down a viral reel second by second and turn what you see into ten ideas of your own.</p>
+          <ul class="tools"><li>Claude</li><li>Instagram &amp; TikTok research</li></ul>
+          <p class="out"><b>You finish with</b> three episode ideas, ranked by how likely they are to travel.</p>
+        </div></li>
+        <li class="step"><span class="n">02</span><div>
+          <h3>Build characters that never change face</h3>
+          <p>The master-frame method: generate a few candidates, pick one, and make every other shot as an edit of that frame. The face, hair, body and outfit stay the same in every scene. It works for realistic people, AI influencers, cartoon and game characters.</p>
+          <ul class="tools"><li>Higgsfield Soul</li><li>Nano Banana Pro</li></ul>
+          <p class="out"><b>You finish with</b> a master frame and a character sheet you can reuse in every episode.</p>
+        </div></li>
+        <li class="step"><span class="n">03</span><div>
+          <h3>Write the script in beats</h3>
+          <p>A hook in the first two seconds, a gag every few seconds, a twist at the end and a reason to wait for episode 2. You get the script prompts we use, plus a timing sheet that shows exactly where each beat lands.</p>
+          <ul class="tools"><li>Claude</li><li>Our script prompts</li></ul>
+          <p class="out"><b>You finish with</b> a shot-by-shot script for your first episode.</p>
+        </div></li>
+        <li class="step"><span class="n">04</span><div>
+          <h3>Direct the shots</h3>
+          <p>One keyframe for every beat: camera angle, lens, light and where each character stands. Then a checklist that catches the mistakes that give AI away, such as extra fingers, a wrong logo or a car with two different wheels.</p>
+          <ul class="tools"><li>Nano Banana Pro</li><li>Higgsfield</li></ul>
+          <p class="out"><b>You finish with</b> 6 to 12 approved keyframes.</p>
+        </div></li>
+        <li class="step"><span class="n">05</span><div>
+          <h3>Turn images into video, with voice</h3>
+          <p>Which model to use for which shot: Kling for faces and acting, Seedance for action and multi-shot scenes. You'll see the prompts that keep the spoken words intact and how to give a character its own voice. Every shot shows what it cost us in credits.</p>
+          <ul class="tools"><li>Kling</li><li>Seedance</li><li>Higgsfield</li><li>ElevenLabs</li></ul>
+          <p class="out"><b>You finish with</b> every clip of your episode and a budget for the next one.</p>
+        </div></li>
+        <li class="step"><span class="n">06</span><div>
+          <h3>Edit with Claude Code and post</h3>
+          <p>Claude Code edits the episode for you: music cut on the beat, sound effects, captions, a film look and the right loudness for Instagram. Then the 4:3 format, a cover that gets the tap, and the caption.</p>
+          <ul class="tools"><li>Claude Code</li><li>Remotion</li><li>CapCut</li></ul>
+          <p class="out"><b>You finish with</b> a finished episode, posted.</p>
+        </div></li>
+      </ol>
+      <div class="bonus">
+        <span class="pill">Bonus</span>
+        <h3>Your content studio on autopilot</h3>
+        <p>The automations we run every week: Claude Code projects that schedule your posts on Instagram, TikTok and YouTube, send a link to everyone who comments your keyword, and write you a weekly report of what worked.</p>
+        <ul class="tools"><li>Claude Code</li><li>Metricool</li><li>ManyChat</li><li>Notion</li></ul>
+      </div>
+      <p class="proof"><strong>Every lesson is dated</strong> and names the tool version it was recorded on, so you always know if something changed.</p>
+    </section>
+
+    <section id="join">
+      <div class="join" id="joinBox">
+        <div>
+          <p class="kicker">Waitlist</p>
+          <h2>Get early <em>access.</em></h2>
+          <p class="intro" style="margin-bottom:0">Join the list and you'll hear first when the course opens, at the <strong style="color:var(--cream)">$49</strong> early-access price. No payment now.</p>
+        </div>
+        <div>
+          <form id="waitlist" novalidate>
+            <label class="field">First name
+              <input type="text" name="name" autocomplete="given-name" placeholder="Your first name">
+            </label>
+            <label class="field">Email
+              <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+            </label>
+            <fieldset>
+              <legend>What do you want to learn first?</legend>
+              <label class="opt"><input type="radio" name="interest" value="ai-characters" required>
+                <span>Realistic AI characters &amp; AI influencers</span></label>
+              <label class="opt"><input type="radio" name="interest" value="story-reels">
+                <span>AI story &amp; cinematic reels</span></label>
+              <label class="opt"><input type="radio" name="interest" value="claude-code">
+                <span>Claude Code: automations &amp; edits</span></label>
+            </fieldset>
+            <label class="hp" aria-hidden="true">Leave this empty <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+            <label class="consent"><input type="checkbox" name="consent" value="yes" required>
+              <span>Email me about the course launch. I can unsubscribe anytime.</span></label>
+            <p class="err" id="err" role="alert"></p>
+            <button class="cta" type="submit" id="submitBtn">Join the waitlist</button>
+            <p class="form-note">We only use your email for this course. No spam, no sharing.</p>
+          </form>
+          <div class="done" role="status">
+            <h3>You're on the list.</h3>
+            <p>We'll email you when early access opens. Meanwhile, the next reel is on Instagram: <a href="https://www.instagram.com/clone.creatives/" target="_blank" rel="noopener">@clone.creatives</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="kicker">Questions</p>
+      <h2>FAQ</h2>
+      <details><summary>When does the course open?</summary><p>The waitlist hears first, before anyone else. We'll email you the opening date.</p></details>
+      <details><summary>How much will it cost?</summary><p>$49 early access for the waitlist. After launch, the price is $97. One payment, no subscription.</p></details>
+      <details><summary>Do I need experience?</summary><p>No. You should be comfortable on a computer, and the course goes step by step from the first idea to the final cut.</p></details>
+      <details><summary>Which tools do I need, and what do they cost?</summary><p>AI image and video tools (such as Higgsfield, Kling and Seedance) and an editor. Some of them are paid. Every lesson shows what each shot cost us, so you can plan your budget.</p></details>
+      <details><summary>Will this make me money?</summary><p>We teach the craft: how to make reels people watch. We don't promise income or views.</p></details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="row">
+      <span>© Clone.ai · <a href="https://www.instagram.com/clone.creatives/" target="_blank" rel="noopener">@clone.creatives</a></span>
+      <a href="https://www.skool.com/cloneai-the-ecosystem-4958/about" target="_blank" rel="noopener">Community: AI Virality Creators</a>
+    </div>
+  </footer>
+</div>
+
+<div class="sticky" id="sticky"><a class="cta" href="#join">Join the waitlist</a></div>
+
+<script>
+  // Sign-ups go to a Google Form, which writes them into the Google Sheet "AI Story Reels - Waitlist (emails)".
+  const FORM_ENDPOINT = "https://docs.google.com/forms/d/e/1FAIpQLScEEFtgtv-gv96Yuxw6dpy-66pvpQN54YJC-MPPgMBpJYy4LA/formResponse";
+  const FIELDS = { name: "entry.1129595107", email: "entry.1768280309", interest: "entry.232848547", source: "entry.913852099" };
+  const INTEREST_LABELS = {
+    "ai-characters": "Realistic AI characters & AI influencers",
+    "story-reels": "AI story & cinematic reels",
+    "claude-code": "Claude Code: automations & edits"
+  };
+
+  const form = document.getElementById("waitlist");
+  const box = document.getElementById("joinBox");
+  const err = document.getElementById("err");
+  const btn = document.getElementById("submitBtn");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    err.textContent = "";
+    const data = new FormData(form);
+    if (data.get("company")) return; // bot
+    const email = (data.get("email") || "").trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = "Please enter a valid email."; return; }
+    if (!data.get("interest")) { err.textContent = "Pick what you want to learn first."; return; }
+    if (!data.get("consent")) { err.textContent = "Tick the box so we can email you."; return; }
+
+    const params = new URLSearchParams(location.search);
+    const body = new URLSearchParams();
+    body.set(FIELDS.name, (data.get("name") || "").trim());
+    body.set(FIELDS.email, email);
+    body.set(FIELDS.interest, INTEREST_LABELS[data.get("interest")] || data.get("interest"));
+    body.set(FIELDS.source, params.get("src") || params.get("utm_source") || (document.referrer ? new URL(document.referrer).hostname : "direct"));
+
+    btn.disabled = true; btn.textContent = "Joining…";
+    try {
+      await fetch(FORM_ENDPOINT, { method: "POST", mode: "no-cors", body });
+      box.classList.add("is-done");
+    } catch (_) {
+      err.textContent = "Something went wrong. Please try again.";
+      btn.disabled = false; btn.textContent = "Join the waitlist";
+    }
+  });
+
+  // phone: show a sticky button until the form is on screen
+  const sticky = document.getElementById("sticky");
+  const join = document.getElementById("join");
+  const hero = document.querySelector(".hero .cta");
+  if ("IntersectionObserver" in window) {
+    let heroVisible = true, joinVisible = false;
+    const update = () => sticky.classList.toggle("show", !heroVisible && !joinVisible);
+    new IntersectionObserver(([en]) => { heroVisible = en.isIntersecting; update(); }).observe(hero);
+    new IntersectionObserver(([en]) => { joinVisible = en.isIntersecting; update(); }, { rootMargin: "0px 0px -20% 0px" }).observe(join);
+  }
+</script>
+</body>
+</html>
