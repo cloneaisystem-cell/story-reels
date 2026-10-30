@@ -108,6 +108,10 @@
   .step2 .skip::after { content: none; }
   .step3 h3 { font-size: 30px; line-height: 1.1; margin: 0 0 8px; }
   .step3 p { margin: 0; color: var(--text); font-size: 15px; }
+  .step3 .again { all: unset; cursor: pointer; font: 400 12px var(--mono); color: var(--muted); margin-top: 14px; display: inline-block; text-decoration: underline; text-underline-offset: 3px; }
+  .step3 .again:hover, .step3 .again:focus-visible { color: var(--cream); }
+  .step3 .again[hidden] { display: none; }
+  .from-dm .sticky { display: none; }
   .step-label { font: 500 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 
   section { position: relative; }
@@ -529,6 +533,7 @@
     <span class="step-label">Done</span>
     <h3>You're on the list.</h3>
     <p>We'll email you when early access opens. Until then, new episodes go up on <a href="https://www.instagram.com/clone.creatives/" target="_blank" rel="noopener">@clone.creatives</a>.</p>
+    <button type="button" class="again" hidden>Not on the list yet? Add your email</button>
   </div>
 </template>
 
@@ -570,8 +575,28 @@
       if (b.dataset.v) send(email, b.dataset.v).catch(() => {});
       wl.dataset.step = "3";
       document.querySelectorAll(".wl").forEach((o) => { if (o !== wl) o.dataset.step = "3"; });
+      document.querySelectorAll(".again").forEach((a) => { a.hidden = true; });
     }));
   });
+
+  // Visitors from the ManyChat DM (?src=dm) already gave their email there,
+  // so they see "you're on the list" instead of the form (no second sign-up).
+  if (params.get("src") === "dm") {
+    document.documentElement.classList.add("from-dm");
+    document.querySelectorAll(".wl").forEach((wl) => {
+      wl.dataset.step = "3";
+      wl.querySelector(".step3 .step-label").textContent = "Signed up in our DMs";
+      wl.querySelector(".step3 h3").textContent = "You're already on the list.";
+      wl.querySelector(".step3 p").innerHTML = 'Nothing else to do here. We\'ll email you when early access opens. Until then, new episodes go up on <a href="https://www.instagram.com/clone.creatives/" target="_blank" rel="noopener">@clone.creatives</a>.';
+      const again = wl.querySelector(".again");
+      again.hidden = false;
+      again.addEventListener("click", () => { wl.dataset.step = "1"; wl.querySelector("input[type=email]").focus(); });
+    });
+    const topBtn = document.querySelector(".top .btn");
+    topBtn.textContent = "See the course"; topBtn.href = "#course";
+    document.querySelector(".hero .note").innerHTML = "The waitlist gets early access at <b>$49</b>. Price after launch: $97.";
+    document.querySelector(".cta-band .note").textContent = "No payment now. We only email you about this course.";
+  }
 
   // hero video: lighter file on phones
   const hv = document.getElementById("heroVideo");
